@@ -20,7 +20,7 @@ module.exports = {
       const userData = await User.findOne({ _id: req.params.userId })
         .select('-__v')
         // .populate("friends")
-        // .populate("thoughts");
+        .populate("thoughts");
 
       if (!userData) {
         return res.status(404).json({ message: 'No course with that ID' });
