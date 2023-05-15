@@ -1,10 +1,6 @@
 const { User, Thought } = require('../models');
 
 module.exports = {
-  // getAllUsers,
-  // getUser,
-  // createUser,
-  // updateUser,
   // deleteUser,
   // addFriend,
   // removeFriend
@@ -21,8 +17,10 @@ module.exports = {
   // getUser
   async getUser(req, res) {
     try {
-      const userData = await User.findOne({ _id: req.params.courseId })
-        .select('-__v');
+      const userData = await User.findOne({ _id: req.params.userId })
+        .select('-__v')
+        // .populate("friends")
+        // .populate("thoughts");
 
       if (!userData) {
         return res.status(404).json({ message: 'No course with that ID' });
@@ -46,13 +44,13 @@ module.exports = {
   // deleteUser
   async deleteUser(req, res) {
     try {
-      const userData = await User.findOneAndDelete({ _id: req.params.courseId });
+      const userData = await User.findOneAndDelete({ _id: req.params.userId });
 
       if (!userData) {
-        res.status(404).json({ message: 'No course with that ID' });
+        res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await Thought.deleteMany({ _id: { $in: course.students } });
+    // await Thought.deleteMany({ _id: { $in: userData.thoughts } });
       res.json({ message: 'Course and students deleted!' });
     } catch (err) {
       res.status(500).json(err);
@@ -60,15 +58,16 @@ module.exports = {
   },
   // updateUser
   async updateUser(req, res) {
+    console.log("Update User");
     try {
       const userData = await User.findOneAndUpdate(
-        { _id: req.params.courseId },
+        { _id: req.params.userId },
         { $set: req.body },
         { runValidators: true, new: true }
       );
 
       if (!userData) {
-        res.status(404).json({ message: 'No course with this id!' });
+        res.status(404).json({ message: 'No user with this id!' });
       }
 
       res.json(userData);
