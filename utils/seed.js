@@ -6,13 +6,13 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
   console.log('connected');
 
-  // Drop existing courses
+  // Drop existing users
   await User.deleteMany({});
 
-  // Drop existing students
+  // Drop existing thoughts
   await Thought.deleteMany({});
 
-  // Create empty array to hold the students
+  // Create empty array to hold the users
   const users = [
     {
         username: "Marvin",
