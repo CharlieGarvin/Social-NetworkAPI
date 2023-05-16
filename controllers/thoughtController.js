@@ -2,9 +2,6 @@ const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
 module.exports = {
-    //   addReaction,
-    //   removeReaction,
-
     // getAllThoughts
     async getAllThoughts(req, res) {
     try {
@@ -126,19 +123,19 @@ module.exports = {
   // removeReaction
   async removeReaction(req, res) {
     try {
-      const student = await Thought.findOneAndUpdate(
-        { _id: req.params.studentId },
-        { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
+      const thoughtData = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 
-      if (!student) {
+      if (!thoughtData) {
         return res
           .status(404)
-          .json({ message: 'No student found with that ID :(' });
+          .json({ message: 'No thought found with that ID :(' });
       }
 
-      res.json(student);
+      res.json(thoughtData);
     } catch (err) {
       res.status(500).json(err);
     }
