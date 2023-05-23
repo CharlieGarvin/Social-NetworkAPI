@@ -10,4 +10,9 @@ Depending on what information you are looking for changes the route you need to 
 You will need to have several things installed for this app to work. These include MySql, Node, MongoDB, and Insomnia. After all those are installed you are able to setup a local host for the site to run on.
 
 ## Video Showcase 
-https://drive.google.com/file/d/1LZJLk9UfpRdSRQIHjj9PIJRG0ywhwjPG/view
+[Demo p1](https://github.com/CharlieGarvin/Social-NetworkAPI/assets/119140410/46c2960c-2cb4-43b7-be17-8fed94b72357)
+[Untitled_ May 23, 2023 12_54 PM.webm](https://github.com/CharlieGarvin/Social-NetworkAPI/assets/119140410/f94e32e1-cbfb-41df-89e4-3f0877e24e1f)
+
+
+
+
